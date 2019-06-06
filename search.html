@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			Language
+		</title>
+		<base target="_blank">
+		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
+		<script>
+			S = Standards.general;
+
+			var dictionary;
+			S.getFile("dictionary.json", function (information) {
+				dictionary = information;
+			}, true);
+
+			S.listen("showAll", "click", function () {
+				S.getId("result").innerHTML = "";
+				S.forEach(dictionary, function (information, word) {
+					let row = S.getId("result").insertRow(-1);
+					row.innerHTML = "<th>" + word + ":</th><td>{" + information.translations.join(", ") + "} " + information.definition + "</td>";
+				});
+			});
+		</script>
+		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
+	</head>
+	<body>
+		<nav class="hidden-left-nav">
+			<iframe src="navigation.html"></iframe>
+		</nav>
+		<h1 class="main-title">
+			Search
+		</h1>
+		<main>
+			<p>
+				This allows searching through a dictionary of my language.
+			</p>
+			<button id="showAll">
+				Show full dictionary
+			</button>
+			<table class="conversation" id="result"></table>
+		</main>
+	</body>
+</html>

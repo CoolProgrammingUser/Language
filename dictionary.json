@@ -1,0 +1,10 @@
+{
+	"abcd": {
+		"definition": "stuff",
+		"translations": [ "word1", "word2" ]
+	},
+	"abcf": {
+		"definition": "stuff",
+		"translations": [ "word1", "word2" ]
+	}
+}
