@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			Language
+		</title>
+		<base target="_blank">
+		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
+		<script>
+			var S = Standards.general;
+
+
+			var consonants = ["f", "d", "s", "a", "e", "w"];
+			var vowels = ["j", "k", "l", ";", "i", "o"];
+
+			S.listen("generateWords", "click", function () {
+				let words = [];
+				S.forEach(Number(S.getId("numberOfWords").value), function () {  // for every word desired
+					let word = "";
+					S.forEach(Math.ceil(Math.random() * 4), function () {  // make a word <= 5 syllables long
+						word += consonants[Math.floor(Math.random() * 6)] + vowels[Math.floor(Math.random() * 6)];  // add a random syllable
+					});
+					word += consonants[Math.floor(Math.random() * 6)];
+					words.push(word);
+                });
+                S.getId("generatedWords").textContent = words.join(" ");  // show the words
+			});
+		</script>
+		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
+		<style>
+			#numberOfWords {
+				width: 3em;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="hidden-left-nav">
+			<iframe src="navigation.html"></iframe>
+		</nav>
+		<h1 class="main-title">
+			Word Generator
+		</h1>
+		<main>
+			<section>
+				Use this to generate practice words.
+			</section>
+			<section>
+				Make <input type="number" id="numberOfWords" min="0" step="1" value="5"> words
+			</section>
+			<button id="generateWords">
+				Generate
+			</button>
+			<section id="generatedWords"></section>
+		</main>
+	</body>
+</html>

@@ -18,7 +18,7 @@
 				S.getId("result").innerHTML = "";
 				S.forEach(dictionary, function (information, word) {
 					let row = S.getId("result").insertRow(-1);
-					row.innerHTML = "<th>" + word + ":</th><td>{" + information.translations.join(", ") + "} " + information.definition + "</td>";
+					row.innerHTML = "<th>" + word + ":</th><td>(" + information.translations.join(", ") + ") " + information.definition + "</td>";
 				});
 			});
 		</script>
@@ -38,7 +38,7 @@
 			<button id="showAll">
 				Show full dictionary
 			</button>
-			<table class="conversation" id="result"></table>
+			<table class="labeled-list" id="result"></table>
 		</main>
 	</body>
 </html>
