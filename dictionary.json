@@ -1,10 +1,14 @@
 {
-	"abcd": {
-		"definition": "stuff",
+	"fjdk": {
+		"definition": "stuff1",
 		"translations": [ "word1", "word2" ]
 	},
-	"abcf": {
-		"definition": "stuff",
+	"sla;": {
+		"definition": "stuff2",
+		"translations": [ "word1", "word2" ]
+	},
+	"eiwo": {
+		"definition": "stuff3",
 		"translations": [ "word1", "word2" ]
 	}
 }
