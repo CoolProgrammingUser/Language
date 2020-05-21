@@ -15,9 +15,11 @@
 
 			S.listen("useFont", "change", function () {
 				if (this.checked) {
-					S.getId("generatedWords").style.fontFamily = "fjdkslaheiwo";
+                    S.getId("generatedWords").style.fontFamily = "fjdkslaheiwo";
+                    S.getId("generatedWords").style.lineHeight = "3em";
 				} else {
-					S.getId("generatedWords").style.fontFamily = "serif";
+                    S.getId("generatedWords").style.fontFamily = "serif";
+                    S.getId("generatedWords").style.lineHeight = "1.15em";
 				}
 			});
 
@@ -31,7 +33,7 @@
 					word += consonants[Math.floor(Math.random() * 6)];
 					words.push(word);
                 });
-                S.getId("generatedWords").innerHTML = words.join("&emsp;");  // show the words
+                S.getId("generatedWords").innerHTML = words.join(" &nbsp; ");  // show the words
 			});
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
@@ -43,6 +45,7 @@
 			}
 			#generatedWords {
 				font-family: fjdkslaheiwo;
+				line-height: 3em;
 			}
 		</style>
 	</head>
