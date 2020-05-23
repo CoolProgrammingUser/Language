@@ -1,14 +1,6 @@
 {
-	"fjdk": {
-		"definition": "stuff1",
-		"translations": [ "word1", "word2" ]
-	},
-	"sla;": {
-		"definition": "stuff2",
-		"translations": [ "word1", "word2" ]
-	},
-	"eiwo": {
-		"definition": "stuff3",
-		"translations": [ "word1", "word2" ]
+	"fjdksla;eiwo": {
+		"definition": "The name of the language or the writing system",
+		"translations": [ "[language name]", "alphabet" ]
 	}
 }
