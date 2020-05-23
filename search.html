@@ -18,17 +18,12 @@
 				S.getId("result").innerHTML = "";
 				S.forEach(dictionary, function (information, word) {
 					let row = S.getId("result").insertRow(-1);
-					row.innerHTML = "<th>" + word + ":</th><td>(" + information.translations.join(", ") + ") " + information.definition + "</td>";
+					row.innerHTML = "<th><span class='language'>" + word + "</span>:</th><td>(" + information.translations.join(", ") + ") " + information.definition + "</td>";
 				});
 			});
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
 		<link rel="stylesheet" href="formatting.css">
-		<style>
-			th {
-				font-family: fjdkslaheiwo;
-			}
-		</style>
 	</head>
 	<body>
 		<nav class="hidden-left-nav">

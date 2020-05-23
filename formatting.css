@@ -2,3 +2,9 @@
 	font-family: "fjdkslaheiwo";
 	src: url(fjdksla;eiwo.ttf) format("truetype");
 }
+
+.language {
+	font-family: "fjdkslaheiwo";
+	font-size: .6em;
+	line-height: 3em;
+}

@@ -15,11 +15,9 @@
 
 			S.listen("useFont", "change", function () {
 				if (this.checked) {
-                    S.getId("generatedWords").style.fontFamily = "fjdkslaheiwo";
-                    S.getId("generatedWords").style.lineHeight = "3em";
+					S.getId("generatedWords").className = "language";
 				} else {
-                    S.getId("generatedWords").style.fontFamily = "serif";
-                    S.getId("generatedWords").style.lineHeight = "1.15em";
+					S.getId("generatedWords").className = "";
 				}
 			});
 
@@ -43,10 +41,6 @@
 				width: 3em;
 				text-align: center;
 			}
-			#generatedWords {
-				font-family: fjdkslaheiwo;
-				line-height: 3em;
-			}
 		</style>
 	</head>
 	<body>
@@ -68,7 +62,7 @@
 			<button id="generateWords">
 				Generate
 			</button>
-			<section id="generatedWords"></section>
+			<section class="language" id="generatedWords"></section>
 		</main>
 	</body>
 </html>
