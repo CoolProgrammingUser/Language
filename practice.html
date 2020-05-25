@@ -16,8 +16,10 @@
 			S.listen("useFont", "change", function () {
 				if (this.checked) {
 					S.getId("generatedWords").className = "language";
+					S.getId("practiceTyping").className = "language";
 				} else {
 					S.getId("generatedWords").className = "";
+					S.getId("practiceTyping").className = "";
 				}
 			});
 
@@ -25,19 +27,23 @@
 				let words = [];
 				S.forEach(Number(S.getId("numberOfWords").value), function () {  // for every word desired
 					let word = "";
-					S.forEach(Math.ceil(Math.random() * 4), function () {  // make a word <= 5 syllables long
+					S.forEach(Math.ceil(Math.random() * Number(S.getId("numberOfSyllables").value)), function () {  // make a word with numberOfSyllables syllables
 						word += consonants[Math.floor(Math.random() * 6)] + vowels[Math.floor(Math.random() * 6)];  // add a random syllable
 					});
 					word += consonants[Math.floor(Math.random() * 6)];
 					words.push(word);
-                });
-                S.getId("generatedWords").innerHTML = words.join(" &nbsp; ");  // show the words
+				});
+				S.getId("generatedWords").innerHTML = words.join(" &nbsp; ");  // show the words
 			});
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
 		<link rel="stylesheet" href="formatting.css">
 		<style>
 			#numberOfWords {
+				width: 3em;
+				text-align: center;
+			}
+			#numberOfSyllables {
 				width: 3em;
 				text-align: center;
 			}
@@ -48,21 +54,31 @@
 			<iframe src="navigation.html"></iframe>
 		</nav>
 		<h1 class="main-title">
-			Word Generator
+			Practice
 		</h1>
 		<main>
 			<section>
-				Use this to generate practice words.
+				Use this to improve your proficiency in the language.
 			</section>
 			<input type="checkbox" id="useFont" checked>
 			<label for="useFont">Use the language font</label>
+			<h2>
+				Word generator
+			</h2>
 			<section>
 				Make <input type="number" id="numberOfWords" min="0" step="1" value="5"> words
+			</section>
+			<section>
+				Make words up to <input type="number" id="numberOfSyllables" min="0" step="1" value="4"> syllables long
 			</section>
 			<button id="generateWords">
 				Generate
 			</button>
 			<section class="language" id="generatedWords"></section>
+			<h2>
+				Typing practice
+			</h2>
+			<textarea class="language" id="practiceTyping" spellcheck="false"></textarea>
 		</main>
 	</body>
 </html>
