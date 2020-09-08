@@ -8,3 +8,7 @@
 	font-size: .6em;
 	line-height: 3em;
 }
+textarea.language {
+	width: 25em;
+	height: 13em;
+}

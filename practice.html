@@ -31,7 +31,7 @@
 					S.forEach(Math.ceil(Math.random() * Number(S.getId("numberOfSyllables").value)), function () {  // make a word with numberOfSyllables syllables
 						word += consonants[Math.floor(Math.random() * 6)] + vowels[Math.floor(Math.random() * 6)];  // add a random syllable
 					});
-					word += consonants[Math.floor(Math.random() * 6)];
+					word += consonants[Math.floor(Math.random() * 5.1)];  // 5.1 instead of 6 makes the "w" consonant much less likely
 					words.push(word);
 				});
 				S.getId("generatedWords").innerHTML = words.join(" &nbsp; ");  // show the words
