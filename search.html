@@ -84,20 +84,26 @@
                     + "/" + makeIPA(word) + "/ [" + makePhonetic(word) + "]<br>"
                     + "(" + information.translations.join(", ") + ") " + information.definition + "<br>"
                     + information.usage + "</section>";
-            }
+			}
+
+			S.listen(["languageWord", "englishWord"], "keydown", function (event) {
+				if (event.key == "Enter") {
+					S.getId("findWord").click();
+                }
+			});
 
 			S.listen("findWord", "click", function () {
                 if (S.getId("languageWord").value.trim()) {
 					S.getId("result").innerHTML = "";
 					result = "";
-                    if (S.getId("languageWord").value.trim().slice(-1).search(/f|d|s|a|e|w/) > -1) {  // if the word ends in a consonant
-						let word = S.getId("languageWord").value.trim();
-						if (Object.keys(dictionary).includes(word)) {
-							listWord(word, dictionary[word]);
+					let languageWord = S.getId("languageWord").value.trim().toLowerCase();
+                    if (languageWord.slice(-1).search(/f|d|s|a|e|w/) > -1) {  // if the word ends in a consonant
+						if (Object.keys(dictionary).includes(languageWord)) {
+							listWord(languageWord, dictionary[languageWord]);
                         }
 					} else {
 						S.forEach(dictionary, function (information, word) {
-							if (word.includes(S.getId("languageWord").value.trim())) {
+							if (word.includes(languageWord)) {
 								listWord(word, information);
 							}
 						});
@@ -107,11 +113,12 @@
 					} else {
 						S.getId("result").innerHTML = result;
                     }
-                } else if (S.getId("englishWord").value.trim()) {
+				} else if (S.getId("englishWord").value.trim()) {
+					let englishWord = S.getId("englishWord").value.trim().toLowerCase();
 					S.getId("result").innerHTML = "";
 					result = "";
                     S.forEach(dictionary, function (information, word) {
-                        if (information.translations.includes(S.getId("englishWord").value.trim())) {
+                        if (information.translations.includes(englishWord)) {
                             listWord(word, information);
                         }
                     });
