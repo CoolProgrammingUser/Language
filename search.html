@@ -17,25 +17,25 @@
 			var result = "";
 
 			function makeIPA(word) {
-                word = word.replace(/f/g, "v");
-                word = word.replace(/;|h/g, "&#593;");
-                word = word.replace(/e/g, "&#633;");
+				word = word.replace(/f/g, "v");
+				word = word.replace(/;|h/g, "&#593;");
+				word = word.replace(/e/g, "&#633;");
 				word = word.replace(/k/g, "e");
 				word = word.replace(/s/g, "z");
-                word = word.replace(/a/g, "&#658;");
-                word = word.replace(/l/g, "a");
+				word = word.replace(/a/g, "&#658;");
+				word = word.replace(/l/g, "a");
 				word = word.replace(/d/g, "l");
-                word = word.replace(/o/g, "u");
+				word = word.replace(/o/g, "u");
 				word = word.replace(/i/g, "o");
-                word = word.replace(/j/g, "i");
-                // word = word.replace(/w/g, "w");
+				word = word.replace(/j/g, "i");
+				// word = word.replace(/w/g, "w");
 				if (word[0] == "v" || word[0] == "l") {
 					word = "b" + word;
 				} else if (word[0] == "z" || word.slice(0, 6) == "&#658;") {
 					word = "d" + word;
 				} else if (word.slice(0, 6) == "&#633;" || word[0] == "w") {
 					word = "g" + word;
-                }
+				}
 				return word;
 			}
 
@@ -67,40 +67,40 @@
 							return "w";
 						case "o":
 							return "oo";
-                    }
-                });
-                if (word[0] == "v" || word[0] == "l") {
-                    word = "b" + word;
-                } else if (word[0] == "z") {
-                    word = "d" + word;
-                } else if (word[0] == "r" || word[0] == "w") {
-                    word = "g" + word;
-                }
-                return word;
-            }
+					}
+				});
+				if (word[0] == "v" || word[0] == "l") {
+					word = "b" + word;
+				} else if (word[0] == "z") {
+					word = "d" + word;
+				} else if (word[0] == "r" || word[0] == "w") {
+					word = "g" + word;
+				}
+				return word;
+			}
 
-            function listWord(word, information) {
-                result += "<h3 class='language'>" + word + "</h2><section>"
-                    + "/" + makeIPA(word) + "/ [" + makePhonetic(word) + "]<br>"
-                    + "(" + information.translations.join(", ") + ") " + information.definition + "<br>"
-                    + information.usage + "</section>";
+			function listWord(word, information) {
+				result += "<h3 class='language'>" + word + "</h2><section>"
+					+ "/" + makeIPA(word) + "/ [" + makePhonetic(word) + "]<br>"
+					+ "(" + information.translations.join(", ") + ") " + information.definition + "<br>"
+					+ information.usage + "</section>";
 			}
 
 			S.listen(["languageWord", "englishWord"], "keydown", function (event) {
 				if (event.key == "Enter") {
 					S.getId("findWord").click();
-                }
+				}
 			});
 
 			S.listen("findWord", "click", function () {
-                if (S.getId("languageWord").value.trim()) {
+				if (S.getId("languageWord").value.trim()) {
 					S.getId("result").innerHTML = "";
 					result = "";
 					let languageWord = S.getId("languageWord").value.trim().toLowerCase();
-                    if (languageWord.slice(-1).search(/f|d|s|a|e|w/) > -1) {  // if the word ends in a consonant
+					if (languageWord.slice(-1).search(/f|d|s|a|e|w/) > -1) {  // if the word ends in a consonant
 						if (Object.keys(dictionary).includes(languageWord)) {
 							listWord(languageWord, dictionary[languageWord]);
-                        }
+						}
 					} else {
 						S.forEach(dictionary, function (information, word) {
 							if (word.includes(languageWord)) {
@@ -109,27 +109,27 @@
 						});
 					}
 					if (result == "") {
-						S.getId("result").innerHTML = "No results found";
+						S.getId("result").innerHTML = "<section style='text-align-last:center'>No results found</section>";
 					} else {
 						S.getId("result").innerHTML = result;
-                    }
+					}
 				} else if (S.getId("englishWord").value.trim()) {
 					let englishWord = S.getId("englishWord").value.trim().toLowerCase();
 					S.getId("result").innerHTML = "";
 					result = "";
-                    S.forEach(dictionary, function (information, word) {
-                        if (information.translations.includes(englishWord)) {
-                            listWord(word, information);
-                        }
-                    });
+					S.forEach(dictionary, function (information, word) {
+						if (information.translations.includes(englishWord)) {
+							listWord(word, information);
+						}
+					});
 					if (result == "") {
-						S.getId("result").innerHTML = "No results found";
+						S.getId("result").innerHTML = "<section style='text-align-last:center'>No results found</section>";
 					} else {
 						S.getId("result").innerHTML = result;
-                    }
+					}
 				} else {
 					S.makeDialog("Specify a language word or an English word to search.");
-                }
+				}
 			});
 
 			S.listen("showAll", "click", function () {
@@ -137,8 +137,8 @@
 				result = "";
 				if (this.textContent.trim() == "Show full dictionary") {
 					this.textContent = "Hide dictionary";
-                    S.forEach(dictionary, function (information, word) {
-                        listWord(word, information);
+					S.forEach(dictionary, function (information, word) {
+						listWord(word, information);
 					});
 				} else {
 					this.textContent = "Show full dictionary";
@@ -152,7 +152,6 @@
 			#result, #result section {
 				display: block;
 				max-width: 35em;
-				text-align: left;
 				text-align-last: left;
 			}
 			#result h3 {
