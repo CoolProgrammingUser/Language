@@ -14,17 +14,144 @@
 			S.getFile("dictionary.json", function (information) {
 				dictionary = information;
 			}, true);
+			var result = "";
+
+			function makeIPA(word) {
+                word = word.replace(/f/g, "v");
+                word = word.replace(/;|h/g, "&#593;");
+                word = word.replace(/e/g, "&#633;");
+				word = word.replace(/k/g, "e");
+				word = word.replace(/s/g, "z");
+                word = word.replace(/a/g, "&#658;");
+                word = word.replace(/l/g, "a");
+				word = word.replace(/d/g, "l");
+                word = word.replace(/o/g, "u");
+				word = word.replace(/i/g, "o");
+                word = word.replace(/j/g, "i");
+                // word = word.replace(/w/g, "w");
+				if (word[0] == "v" || word[0] == "l") {
+					word = "b" + word;
+				} else if (word[0] == "z" || word.slice(0, 6) == "&#658;") {
+					word = "d" + word;
+				} else if (word.slice(0, 6) == "&#633;" || word[0] == "w") {
+					word = "g" + word;
+                }
+				return word;
+			}
+
+			function makePhonetic(word) {
+				word = word.replace(/f|j|d|k|s|l|a|;|h|e|i|w|o/g, function (letter) {
+					switch (letter) {
+						case "f":
+							return "v";
+						case "j":
+							return "ee";
+						case "d":
+							return "l";
+						case "k":
+							return "ay";
+						case "s":
+							return "z";
+						case "l":
+							return "ah";
+						case "a":
+							return "zh";
+						case ";":
+						case "h":
+							return "aw";
+						case "e":
+							return "r";
+						case "i":
+							return "o";
+						case "w":
+							return "w";
+						case "o":
+							return "oo";
+                    }
+                });
+                if (word[0] == "v" || word[0] == "l") {
+                    word = "b" + word;
+                } else if (word[0] == "z") {
+                    word = "d" + word;
+                } else if (word[0] == "r" || word[0] == "w") {
+                    word = "g" + word;
+                }
+                return word;
+            }
+
+            function listWord(word, information) {
+                result += "<h3 class='language'>" + word + "</h2><section>"
+                    + "/" + makeIPA(word) + "/ [" + makePhonetic(word) + "]<br>"
+                    + "(" + information.translations.join(", ") + ") " + information.definition + "<br>"
+                    + information.usage + "</section>";
+            }
+
+			S.listen("findWord", "click", function () {
+                if (S.getId("languageWord").value.trim()) {
+					S.getId("result").innerHTML = "";
+					result = "";
+                    if (S.getId("languageWord").value.trim().slice(-1).search(/f|d|s|a|e|w/) > -1) {  // if the word ends in a consonant
+						let word = S.getId("languageWord").value.trim();
+						if (Object.keys(dictionary).includes(word)) {
+							listWord(word, dictionary[word]);
+                        }
+					} else {
+						S.forEach(dictionary, function (information, word) {
+							if (word.includes(S.getId("languageWord").value.trim())) {
+								listWord(word, information);
+							}
+						});
+					}
+					if (result == "") {
+						S.getId("result").innerHTML = "No results found";
+					} else {
+						S.getId("result").innerHTML = result;
+                    }
+                } else if (S.getId("englishWord").value.trim()) {
+					S.getId("result").innerHTML = "";
+					result = "";
+                    S.forEach(dictionary, function (information, word) {
+                        if (information.translations.includes(S.getId("englishWord").value.trim())) {
+                            listWord(word, information);
+                        }
+                    });
+					if (result == "") {
+						S.getId("result").innerHTML = "No results found";
+					} else {
+						S.getId("result").innerHTML = result;
+                    }
+				} else {
+					S.makeDialog("Specify a language word or an English word to search.");
+                }
+			});
 
 			S.listen("showAll", "click", function () {
 				S.getId("result").innerHTML = "";
-				S.forEach(dictionary, function (information, word) {
-					let row = S.getId("result").insertRow(-1);
-					row.innerHTML = "<th><span class='language'>" + word + "</span>:</th><td>(" + information.translations.join(", ") + ") " + information.definition + "</td>";
-				});
+				result = "";
+				if (this.textContent.trim() == "Show full dictionary") {
+					this.textContent = "Hide dictionary";
+                    S.forEach(dictionary, function (information, word) {
+                        listWord(word, information);
+					});
+				} else {
+					this.textContent = "Show full dictionary";
+				}
+				S.getId("result").innerHTML = result;
 			});
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
 		<link rel="stylesheet" href="formatting.css">
+		<style>
+			#result, #result section {
+				display: block;
+				max-width: 35em;
+				text-align: left;
+				text-align-last: left;
+			}
+			#result h3 {
+				margin-top: 4em;
+			}
+		</style>
 	</head>
 	<body>
 		<nav class="hidden-left-nav">
@@ -34,13 +161,20 @@
 			Search
 		</h1>
 		<main>
-			<p>
+			<section>
 				This allows searching through a dictionary of my language.
-			</p>
+			</section>
+			<input type="text" class="language" id="languageWord" placeholder="fjdksla;" spellcheck="false">
+			or
+			<input type="text" id="englishWord" placeholder="English word">
+			<button id="findWord">
+				Search
+			</button>
+			<br>
 			<button id="showAll">
 				Show full dictionary
 			</button>
-			<table class="labeled-list" id="result"></table>
+			<div id="result"></div>
 		</main>
 	</body>
 </html>

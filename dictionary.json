@@ -1,6 +1,80 @@
 {
-	"fjdksla;eiwo": {
-		"definition": "The name of the language or the writing system",
-		"translations": [ "[language name]", "alphabet" ]
+	"ejf": {
+		"definition": "The digit one.",
+		"translations": [ "one", "first" ],
+		"usage": "Represents the digit 1 in numbers, including when it would represent 10, 100, .1, .01, etc. Can also be added to words to signify something being first.",
+		"examples": []
+	},
+	"ejaof": {
+		"definition": "The number ten.",
+		"translations": [ "ten", "tenth" ],
+		"usage": "Represents the number ten on its own. Can also be added to words to signify something being tenth.",
+		"examples": []
+	},
+	"ejejf": {
+		"definition": "The number eleven.",
+		"translations": [ "eleven", "eleventh" ],
+		"usage": "Represents the number eleven on its own. Can also be added to words to signify something being eleventh.",
+		"examples": []
+	},
+	"ejwkf": {
+		"definition": "The number twelve.",
+		"translations": [ "twelve", "twelfth" ],
+		"usage": "Represents the number twelve on its own. Can also be added to words to signify something being twelfth.",
+		"examples": []
+	},
+	"wkf": {
+		"definition": "The digit two.",
+		"translations": [ "two", "second" ],
+		"usage": "Represents the digit 2 in numbers, including when it would represent 20, 200, .2, .02, etc. Can also be added to words to signify something being second.",
+		"examples": []
+	},
+	"flf": {
+		"definition": "The digit three.",
+		"translations": [ "three", "third" ],
+		"usage": "Represents the digit 3 in numbers, including when it would represent 30, 300, .3, .03, etc. Can also be added to words to signify something being third.",
+		"examples": []
+	},
+	"d;f": {
+		"definition": "The digit four.",
+		"translations": [ "four", "fourth" ],
+		"usage": "Represents the digit 4 in numbers, including when it would represent 40, 400, .4, .04, etc. Can also be added to words to signify something being fourth.",
+		"examples": []
+	},
+	"siejf": {
+		"definition": "The digit six.",
+		"translations": [ "six", "sixth" ],
+		"usage": "Represents the digit 6 in numbers, including when it would represent 60, 600, .6, .06, etc. Can also be added to words to signify something being sixth.",
+		"examples": []
+	},
+	"siwkf": {
+		"definition": "The digit seven.",
+		"translations": [ "seven", "seventh" ],
+		"usage": "Represents the digit 7 in numbers, including when it would represent 70, 700, .7, .07, etc. Can also be added to words to signify something being seventh.",
+		"examples": []
+	},
+	"siflf": {
+		"definition": "The digit eight.",
+		"translations": [ "eight", "eighth" ],
+		"usage": "Represents the digit 8 in numbers, including when it would represent 80, 800, .8, .08, etc. Can also be added to words to signify something being eigth.",
+		"examples": []
+	},
+	"sid;f": {
+		"definition": "The digit nine.",
+		"translations": [ "nine", "nineth" ],
+		"usage": "Represents the digit 9 in numbers, including when it would represent 90, 900, .9, .09, etc. Can also be added to words to signify something being ninth.",
+		"examples": []
+	},
+	"siaof": {
+		"definition": "The digit five.",
+		"translations": [ "five", "fifth" ],
+		"usage": "Represents the digit 5 in numbers, including when it would represent 50, 500, .5, .05, etc. Can also be added to words to signify something being fifth.",
+		"examples": []
+	},
+	"aof": {
+		"definition": "The digit zero.",
+		"translations": [ "zero" ],
+		"usage": "",
+		"examples": []
 	}
 }
